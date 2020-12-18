@@ -13,5 +13,7 @@ public class BaseballGameService {
         Baseballs computerBaseballs = Baseballs.random();
         OutputView.InputNumberMessage();
         Baseballs userBaseballs = Baseballs.valueOf(inputView.scan());
+
+
     }
 }

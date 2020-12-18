@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Baseballs {
     private static final int BASEBALL_NUMBER = 3;
@@ -40,5 +41,12 @@ public class Baseballs {
         if (baseballs.stream().distinct().count() != BASEBALL_NUMBER) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int calculateStrike(Baseballs baseballs) {
+        return (int) this.baseballs.stream()
+                .filter(baseball -> this.baseballs.indexOf(baseball) ==
+                baseballs.baseballs.indexOf(baseball))
+                .count();
     }
 }

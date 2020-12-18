@@ -1,6 +1,5 @@
 package baseball.model.baseball;
 
-import baseball.exceptions.BaseballNumberRangeException;
 import utils.RandomUtils;
 
 public class Baseball {
