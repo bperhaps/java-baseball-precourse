@@ -8,32 +8,42 @@ import baseball.view.OutputView;
 
 import java.util.Scanner;
 
-public class BaseballGameService {
-    public void run(Scanner scanner) {
-        InputView inputView = new InputView(scanner);
+import static baseball.view.InputView.EXIT;
 
-        Baseballs computerBaseballs = Baseballs.random();
-        playGame(inputView, computerBaseballs);
+public class BaseballGameService {
+    private final Scanner scanner;
+
+    public BaseballGameService(Scanner scanner) {
+        this.scanner = scanner;
     }
 
-    public void playGame(InputView inputView, Baseballs computerBaseballs) {
-        while(true) {
+    public void run() {
+        InputView inputView = new InputView(scanner);
+        Baseballs computerBaseballs = Baseballs.random();
+        playGame(inputView, computerBaseballs);
+        OutputView.gameFinishedMessage();
+        OutputView.restartGameMessage();
+
+        int isRestart = inputView.restartOrFinishScan();
+
+        if (isRestart == EXIT) {
+            return;
+        }
+
+        run();
+    }
+
+    private void playGame(InputView inputView, Baseballs computerBaseballs) {
+        GameResult gameResult;
+
+        do {
             OutputView.inputNumberMessage();
             Baseballs userBaseballs = Baseballs.valueOf(inputView.scan());
 
             GameService gameService = new GameService();
-            GameResult gameResult = gameService.match(userBaseballs, computerBaseballs);
+            gameResult = gameService.match(userBaseballs, computerBaseballs);
 
             OutputView.print(gameResult.toString());
-            if (gameResult.isFinish()) {
-                OutputView.gameFinishedMessage();
-                break;
-            }
-        }
-    }
-
-    public static void main(String[] args ){
-        BaseballGameService baseballGameService = new BaseballGameService();
-        baseballGameService.run(new Scanner(System.in));
+        } while(!gameResult.isFinish());
     }
 }
