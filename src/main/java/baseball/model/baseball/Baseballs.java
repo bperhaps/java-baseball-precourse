@@ -49,4 +49,13 @@ public class Baseballs {
                 baseballs.baseballs.indexOf(baseball))
                 .count();
     }
+
+    public int calculateBall(Baseballs baseballs) {
+        return (int) this.baseballs.stream()
+                .filter(baseball ->
+                        (this.baseballs.indexOf(baseball) !=
+                            baseballs.baseballs.indexOf(baseball)) &&
+                            baseballs.baseballs.contains(baseball)
+                ).count();
+    }
 }
