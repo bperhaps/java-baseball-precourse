@@ -1,5 +1,7 @@
 package baseball.model;
 
+import baseball.model.baseball.Baseballs;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,10 @@ public class GameResult {
         }
 
         resultMessage.add(String.format(BALL, ball));
+    }
+
+    public boolean isFinish() {
+        return strike == Baseballs.BASEBALL_NUMBER;
     }
 
     @Override

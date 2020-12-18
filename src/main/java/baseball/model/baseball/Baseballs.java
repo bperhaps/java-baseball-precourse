@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Baseballs {
-    private static final int BASEBALL_NUMBER = 3;
+    public static final int BASEBALL_NUMBER = 3;
 
     List<Baseball> baseballs;
 
